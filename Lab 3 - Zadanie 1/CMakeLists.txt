@@ -3,4 +3,4 @@ project(Lab_3___Zadanie_1)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(Lab_3___Zadanie_1 main.cpp)
+add_executable(Lab_3___Zadanie_1 main.cpp obliczenia.cpp obliczenia.hpp)
