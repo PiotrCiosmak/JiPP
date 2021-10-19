@@ -1,6 +1,7 @@
 #include <iostream>
 #include "obliczenia.hpp"
 
+
 using namespace std;
 
 int main() {
