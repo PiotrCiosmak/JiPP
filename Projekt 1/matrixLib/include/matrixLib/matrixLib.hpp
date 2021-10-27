@@ -1,5 +1,5 @@
-#ifndef PROJEKT_1_MATRIXOPERATIONS_HPP
-#define PROJEKT_1_MATRIXOPERATIONS_HPP
+#ifndef PROJEKT_1_MATRIXLIB_HPP
+#define PROJEKT_1_MATRIXLIB_HPP
 
 int **addMatrix(int **matrixA, int **matrixB, int rows, int columns);
 
@@ -25,18 +25,24 @@ int **powerMatrix(int **matrix, int rows, int columns, unsigned long power);
 
 double **powerMatrix(double **matrix, int rows, int columns, unsigned long power);
 
-int **determinantMatrix(int **matrix, int rows, int columns); //(funkcja powinna zwracać wartość (typu takiego, jakiego są macierze), w tym przypadku wynik nie jest przekazywany przez referencję)
+int determinantMatrix(int **matrix, int rows, int columns);
+
+double determinantMatrix(double **matrix, int rows, int columns);
 
 bool matrixIsDiagonal(int **matrix, int rows, int columns);
 
 bool matrixIsDiagonal(double **matrix, int rows, int columns);
 
-void swap(int *a, int *b); //(parametry przekazywane przez referencję)
+void swap(int &a, int &b);
 
-int **sortRow(int *matrix, int columns);
+void swap(double &a, double &b);
 
+void sortRow(int *matrix, int columns);
 
-int **sortRowsInMatrix(int **matrix, int rows, int columns);
+void sortRow(double *matrix, int columns);
 
+void sortRowsInMatrix(int **matrix, int rows, int columns);
 
-#endif //PROJEKT_1_MATRIXOPERATIONS_HPP
+void sortRowsInMatrix(double **matrix, int rows, int columns);
+
+#endif //PROJEKT_1_MATRIXLIB_HPP

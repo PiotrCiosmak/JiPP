@@ -2,7 +2,7 @@
 #include <string>
 #include "matrix.hpp"
 #include "exception.hpp"
-#include "../matrixLib/include/matrixLib/matrixOperations.hpp"
+#include "../matrixLib/include/matrixLib/matrixLib.hpp"
 
 #define INT 1
 #define DOUBLE 2
@@ -37,7 +37,6 @@ int main(int argc, char *argv[])
         resultMatrix = addMatrix(matrixA, matrixB, rows_a, columns_a);
         showMatrix(resultMatrix, rows_a, columns_a);
         removeMatrix(matrixB, rows_a);
-        removeMatrix(matrixA, rows_a);
         removeMatrix(resultMatrix, rows_a);
     }
 
@@ -55,15 +54,14 @@ int main(int argc, char *argv[])
         resultMatrix = subtractMatrix(matrixA, matrixB, rows_a, columns_a);
         showMatrix(resultMatrix, rows_a, columns_a);
         removeMatrix(matrixB, rows_a);
-        removeMatrix(matrixA, rows_a);
         removeMatrix(resultMatrix, rows_a);
     }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    else if (!strcmp(argv[1], "multiplyMatrix"))//DO ZRIOBIENIA
+    else if (!strcmp(argv[1], "multiplyMatrix"))
     {
-        int rows_b{columns_a}, columns_b{};
+        int rows_b{columns_a}, columns_b;
 #if (TYP_LICZB == INT)
         int **matrixB{nullptr};
         matrixB = createMatrix(matrixB, &rows_b, &columns_b, 0);
@@ -71,10 +69,9 @@ int main(int argc, char *argv[])
         double **matrixB{nullptr};
         matrixB = createMatrix(matrixB, &rows_b, &columns_b, 0);
 #endif
-        resultMatrix = multiplyMatrix(matrixA, matrixB, rows_a, columns_a, rows_b);
-        showMatrix(resultMatrix, rows_a, columns_a);
+        resultMatrix = multiplyMatrix(matrixA, matrixB, rows_a, columns_a, columns_b);
+        showMatrix(resultMatrix, rows_a, columns_b);
         removeMatrix(matrixB, rows_a);
-        removeMatrix(matrixA, rows_a);
         removeMatrix(resultMatrix, rows_a);
     }
 
@@ -97,7 +94,6 @@ int main(int argc, char *argv[])
         resultMatrix = multiplyByScalar(matrixA, rows_a, columns_a, matrixScalar);
         showMatrix(resultMatrix, rows_a, columns_a);
         removeMatrix(matrixScalar, rows_a);
-        removeMatrix(matrixA, rows_a);
         removeMatrix(resultMatrix, rows_a);
     }
 
@@ -107,28 +103,25 @@ int main(int argc, char *argv[])
     {
         resultMatrix = transpozeMatrix(matrixA, rows_a, columns_a);
         showMatrix(resultMatrix, columns_a, rows_a);
-        removeMatrix(matrixA, rows_a);
         removeMatrix(resultMatrix, columns_a);
     }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    else if (!strcmp(argv[1], "powerMatrix"))//JAK ZROBIE MNOZENIE TO ZADZIAŁA
+    else if (!strcmp(argv[1], "powerMatrix"))
     {
         unsigned long power{stoul(argv[2])};
         resultMatrix = powerMatrix(matrixA, rows_a, columns_a, power);
         showMatrix(resultMatrix, columns_a, rows_a);
-        removeMatrix(matrixA, rows_a);
         removeMatrix(resultMatrix, columns_a);
 
     }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    else if (!strcmp(argv[1], "determinantMatrix"))//TRUDNE ZROBIĆ
+    else if (!strcmp(argv[1], "determinantMatrix"))
     {
-
-    }
+    }//ZROBIĆ!!!
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -143,29 +136,51 @@ int main(int argc, char *argv[])
         {
             cout << "Ta macierz nie jest diagonalizowalna\n";
         }
-        removeMatrix(matrixA, rows_a);
-        removeMatrix(resultMatrix, rows_a);
+        delete[]resultMatrix;
     }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    else if (!strcmp(argv[1], "swap"))//ZROBIĆ
+    else if (!strcmp(argv[1], "swap"))
     {
+        int rowToSwap1, columnToSwap1;
 
+        cout << "Podaj indeks pierwszej liczby do zamiany:\n";
+        cout << "Wiersz:";
+        cin >> rowToSwap1;
+        cout << "Kolumna:";
+        cin >> columnToSwap1;
+        int rowToSwap2, columnToSwap2;
+        cout << "Podaj indeks drugiej liczby do zamiany:\n";
+        cout << "Wiersz:";
+        cin >> rowToSwap2;
+        cout << "Kolumna:";
+        cin >> columnToSwap2;
+
+        swap(matrixA[rowToSwap1][columnToSwap1],matrixA[rowToSwap2][columnToSwap2]);
+        showMatrix(matrixA,rows_a,columns_a);
+        delete[]resultMatrix;
     }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    else if (!strcmp(argv[1], "sortRow"))//ZROBIĆ
+    else if (!strcmp(argv[1], "sortRow"))
     {
-
+        int rowToSort;
+        cout<<"Ktory wiersz posortowac:\n";
+        cin>>rowToSort;
+        sortRow(matrixA[rowToSort],columns_a);
+        showMatrix(matrixA,rows_a,columns_a);
+        delete[]resultMatrix;
     }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    else if (!strcmp(argv[1], "sortRowsInMatrix"))//ZROBIĆ
+    else if (!strcmp(argv[1], "sortRowsInMatrix"))
     {
-
+        sortRowsInMatrix(matrixA,rows_a,columns_a);
+        showMatrix(matrixA,rows_a,columns_a);
+        delete[]resultMatrix;
     }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -173,6 +188,7 @@ int main(int argc, char *argv[])
     else if (!strcmp(argv[1], "help"))
     {
         help();
+        delete[]resultMatrix;
     }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -180,5 +196,8 @@ int main(int argc, char *argv[])
     else
     {
         error_par();
+        delete[]resultMatrix;
     }
+    cout<<"KONIEC\n";
+    removeMatrix(matrixA, rows_a);
 }

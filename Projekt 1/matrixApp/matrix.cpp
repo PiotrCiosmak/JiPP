@@ -129,6 +129,16 @@ void fillMatrix(double **matrix, int rows, int columns, int option, double scala
             }
         }
     }
+    else
+    {
+        for (int row_number = 0; row_number < rows; ++row_number)
+        {
+            for (int column_number = 0; column_number < columns; ++column_number)
+            {
+                matrix[row_number][column_number]=0;
+            }
+        }
+    }
 }
 
 void removeMatrix(int **matrix, int rows)
@@ -168,7 +178,7 @@ void showMatrix(double **matrix, int rows, int columns)
     {
         for (int column_number = 0; column_number < columns; ++column_number)
         {
-            cout << "[" << row_number << "][" << column_number << "]=" << matrix[row_number][column_number] << "\n";
+            cout << "[" << row_number << "][" << column_number << "]=" <<matrix[row_number][column_number] << "\n";
         }
     }
 }
