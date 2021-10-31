@@ -84,13 +84,25 @@ int main(int argc, char *argv[])
         matrixA = createMatrix(matrixA, &rows_a, &columns_a);
 #if (TYP_LICZB == INT)
         int scalar;
-        cout << "Podaj sklar: ";
-        cin >> scalar;
+        cout << "Podaj sklar:";
+        while(!(cin >> scalar))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout<<"Blad. Sprobuj ponownie\n";
+            cout << "Podaj sklar:";
+        }
         int **matrixScalar{nullptr};
 #else
         double scalar;
-        cout << "Podaj sklar: ";
-        cin>>scalar;
+        cout << "Podaj sklar:";
+        while(!(cin >> scalar))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout<<"Blad. Sprobuj ponownie\n";
+            cout << "Podaj sklar:";
+        }
         double **matrixScalar{nullptr};
 #endif
         matrixScalar = createMatrix(matrixScalar, &rows_a, &columns_a, 4, scalar);
@@ -157,19 +169,46 @@ int main(int argc, char *argv[])
     else if (!strcmp(argv[1], "swap"))
     {
         matrixA = createMatrix(matrixA, &rows_a, &columns_a);
-        int rowToSwap1, columnToSwap1;
 
+        int rowToSwap1, columnToSwap1;
         cout << "Podaj indeks pierwszej liczby do zamiany:\n";
         cout << "Wiersz:";
-        cin >> rowToSwap1;
+        while(!(cin >> rowToSwap1))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout<<"Blad. Sprobuj ponownie\n";
+            cout << "Wiersz:";
+        }
+
         cout << "Kolumna:";
-        cin >> columnToSwap1;
+        while(!(cin >> columnToSwap1))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout<<"Blad. Sprobuj ponownie\n";
+            cout << "Wiersz:";
+        }
+
         int rowToSwap2, columnToSwap2;
         cout << "Podaj indeks drugiej liczby do zamiany:\n";
         cout << "Wiersz:";
-        cin >> rowToSwap2;
+        while(!(cin >> rowToSwap2))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout<<"Blad. Sprobuj ponownie\n";
+            cout << "Wiersz:";
+        }
+
         cout << "Kolumna:";
-        cin >> columnToSwap2;
+        while(!(cin >> columnToSwap2))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout<<"Blad. Sprobuj ponownie\n";
+            cout << "Wiersz:";
+        }
 
         swap(matrixA[rowToSwap1][columnToSwap1],matrixA[rowToSwap2][columnToSwap2]);
         showMatrix(matrixA,rows_a,columns_a);
@@ -184,7 +223,13 @@ int main(int argc, char *argv[])
         matrixA = createMatrix(matrixA, &rows_a, &columns_a);
         int rowToSort;
         cout<<"Ktory wiersz posortowac:\n";
-        cin>>rowToSort;
+        while(!(cin >> rowToSort))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout<<"Blad. Sprobuj ponownie\n";
+            cout << "Wiersz:";
+        }
         sortRow(matrixA[rowToSort],columns_a);
         showMatrix(matrixA,rows_a,columns_a);
         delete[]resultMatrix;

@@ -25,21 +25,45 @@ void enterDimensions(int *rows, int *columns, int option)
     {
         cout << "Uzupelnij informacje dotyczace macierzy A\n";
         cout << "Wprowadz ilosc wierszy:";
-        cin >> *rows;
+        while(!(cin>>*rows))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout<<"Blad. Sprobuj ponownie\n";
+            cout << "Wprowadz ilosc wierszy:";
+        }
         cout << "Wprowadz ilosc kolumn:";
-        cin >> *columns;
+        while(!(cin >> *columns))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout<<"Blad. Sprobuj ponownie\n";
+            cout << "Wprowadz ilosc kolumn:";
+        }
     }
     else if (option == 0)
     {
         cout << "Uzupelnij informacje dotyczace macierzy B\n";
         cout << "Wprowadz ilosc kolumn:";
-        cin >> *columns;
+        while(!(cin >> *columns))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout<<"Blad. Sprobuj ponownie\n";
+            cout << "Wprowadz ilosc kolumn:";
+        }
     }
     else if (option == 5)
     {
         cout << "Uzupelnij informacje dotyczace macierzy A\n";
         cout << "Wprowadz ilosc wierszy i kolumn:";
-        cin >> *rows;
+        while(!(cin>>*rows))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout<<"Blad. Sprobuj ponownie\n";
+            cout << "Wprowadz ilosc wierszy i kolumn:";
+        }
         *columns=*rows;
     }
 }
@@ -89,8 +113,14 @@ void fillMatrix(int **matrix, int rows, int columns, int option, double scalar)
         {
             for (int column_number = 0; column_number < columns; ++column_number)
             {
+                cout << "[" << row_number << "][" << column_number << "]=";
+                while(!(cin >> matrix[row_number][column_number]))
+                {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout<<"Blad. Sprobuj ponownie\n";
                     cout << "[" << row_number << "][" << column_number << "]=";
-                    cin >> matrix[row_number][column_number];
+                }
             }
         }
     }
@@ -132,7 +162,13 @@ void fillMatrix(double **matrix, int rows, int columns, int option, double scala
             for (int column_number = 0; column_number < columns; ++column_number)
             {
                 cout << "[" << row_number << "][" << column_number << "]=";
-                cin >> matrix[row_number][column_number];
+                while(!(cin >> matrix[row_number][column_number]))
+                {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout<<"Blad. Sprobuj ponownie\n";
+                    cout << "[" << row_number << "][" << column_number << "]=";
+                }
             }
         }
     }
