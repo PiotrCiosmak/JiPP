@@ -11,3 +11,28 @@ Prostopadloscian::Prostopadloscian(double bok1, double bok2, double wysokosc)
     b=bok2;
     h=wysokosc;
 }
+
+void Prostopadloscian::setA(double a)
+{
+    this->a=a;
+}
+void Prostopadloscian::setB(double b)
+{
+    this->b=b;
+}
+void Prostopadloscian::setH(double h)
+{
+    this->h=h;
+}
+double Prostopadloscian::getA()
+{
+    return a;
+}
+double Prostopadloscian::getB()
+{
+    return b;
+}
+double Prostopadloscian::getH()
+{
+    return h;
+}
