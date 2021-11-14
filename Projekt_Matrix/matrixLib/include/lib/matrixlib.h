@@ -1,6 +1,28 @@
 #ifndef PROJEKT_1_MATRIXLIB_HPP
 #define PROJEKT_1_MATRIXLIB_HPP
 
+int **createMatrix(int **matrix, int *rows, int *columns, int option = 1,double scalar=0);
+
+double **createMatrix(double **matrix, int *rows, int *columns, int option = 1,double scalar=0);
+
+void enterDimensions(int *rows, int *columns, int option = 1);
+
+int **allocateMatrix(int **matrix, int rows, int columns);
+
+double **allocateMatrix(double **matrix, int rows, int columns);
+
+void fillMatrix(int **matrix, int rows, int columns,int option,double scalar);
+
+void fillMatrix(double **matrix, int rows, int columns,int option,double scalar);
+
+void removeMatrix(int **matrix,int rows);
+
+void removeMatrix(double **matrix,int rows);
+
+void showMatrix(int **matrix, int rows, int columns);
+
+void showMatrix(double **matrix, int rows, int columns);
+
 int **addMatrix(int **matrixA, int **matrixB, int rows, int columns);
 
 double **addMatrix(double **matrixA, double **matrixB, int rows, int columns);
@@ -25,7 +47,7 @@ int **powerMatrix(int **matrix, int rows, int columns, unsigned long power);
 
 double **powerMatrix(double **matrix, int rows, int columns, unsigned long power);
 
-int determinantMatrix(int **matrix, int rows, int columns);
+double determinantMatrix(int **matrix, int rows, int columns);
 
 double determinantMatrix(double **matrix, int rows, int columns);
 
@@ -44,5 +66,9 @@ void sortRow(double *matrix, int columns);
 void sortRowsInMatrix(int **matrix, int rows, int columns);
 
 void sortRowsInMatrix(double **matrix, int rows, int columns);
+
+void help();
+
+void error_par();
 
 #endif //PROJEKT_1_MATRIXLIB_HPP
